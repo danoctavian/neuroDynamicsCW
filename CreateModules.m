@@ -3,9 +3,9 @@ function CreateModules
 M = 100;
 
 % check this with lecturer
-F = 17; % scaling factor
+F = 17; % scaling factor for excitatory-excitatory interactions
 
-C = zeros(M);
+C = zeros(M); %connectivity matrix
 
 for m=1:1
     % should this be global?
