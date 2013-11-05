@@ -5,9 +5,7 @@ N = 200;
 
 module = cell(1, 9); 
 % check this with lecturer
-F = 17; % scaling factor for excitatory-excitatory interactions
-
-
+scalingFactorEE = 17; % scaling factor for excitatory-excitatory interactions
 
 %% Setup 8 modules of excitatory neurons
 for m=1:8
@@ -58,16 +56,17 @@ end
 
 %% Inhibitory to excitatory
 inhibitory2excitatory = ones(200, 100, 8);
-scalingFactor = 2;
+scalingFactorIE = 2;
 
-weights = rand(200, 100, 8) - 1;
-conductionDelay = 1;
+weightsIE = rand(200, 100, 8) - 1;
+conductionDelayIE = 1;
 
 %% Inhibitory to inhibitory
 inhibitory2inhibitory = ones(200);
 inhibitory2inhibitory(1:201:end) = 0;
-scalingFactor = 1;
+scalingFactorII = 1;
+conductionDelayII = 1;
+weightsII = rand(200, 100, 8) - 1;
 
-
-
+save('Network.mat', 'module', 'inhibitory2excitatory', 'scalingFactorIE', 'weightsIE', 'conductionDelayIE', 'inhibitory2inhibitory', 'scalingFactorII', 'scalingFactorII', 'weightsII', 'scalingFactorEE');
 
