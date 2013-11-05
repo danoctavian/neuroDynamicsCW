@@ -7,7 +7,7 @@ inhibitoryModule = 9;
 module = cell(1, 9); 
 
 %% Setup 8 modules of excitatory neurons
-for m=1:8 
+for m = 1:8
     r = rand(M);
     
     module{m}.a = 0.02*ones(M);
