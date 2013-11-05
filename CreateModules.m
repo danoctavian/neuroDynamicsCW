@@ -37,6 +37,10 @@ end
 %% Excitatory to Inhibitory connections
 module{9}.excitatory2Inhibitory = zeros(100, 200, 8);
 
+module{9}.scalingFactor = 50;
+module{9}.conductionDelay = 1;
+module{9}.weights = rand(100, 200, M);
+
 for inhibitoryNeuron = 1:N
   m = floor(rand*7) + 1;
   
@@ -52,12 +56,17 @@ for inhibitoryNeuron = 1:N
   
 end
 
-module{9}.scalingFactor = 50;
-module{9}.conductionDelay = 1;
-module{9}.weights = rand(100, 200, M);
+%% Inhibitory to excitatory
+inhibitory2excitatory = ones(200, 100, 8);
+scalingFactor = 2;
 
-sum(length(find(module{9}.excitatory2Inhibitory(:, :, 1:8))))
+weights = rand(200, 100, 8) - 1;
+conductionDelay = 1;
 
+%% Inhibitory to inhibitory
+inhibitory2inhibitory = ones(200);
+inhibitory2inhibitory(1:201:end) = 0;
+scalingFactor = 1;
 
 
 
