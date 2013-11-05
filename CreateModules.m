@@ -1,15 +1,14 @@
 function CreateModules
 
-M = 100;
-N = 200;
+M = 100; % Number of excitatory neurons in each module.
+N = 200; % Total number of inhibitory neurons.
 
 module = cell(1, 9); 
-% check this with lecturer
 scalingFactorEE = 17; % scaling factor for excitatory-excitatory interactions
 
 %% Setup 8 modules of excitatory neurons
 for m=1:8
-    module{m}.excitatoryConnectivity = zeros(M); %connectivity matrix
+    module{m}.excitatoryConnectivity = zeros(M); % Excitatory-excitatory connectivity matrix for each module.
     
     % should this be global?
     r = rand(M);
