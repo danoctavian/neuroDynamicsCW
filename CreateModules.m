@@ -1,8 +1,8 @@
 function CreateModules
 
-M = 100;
-N = 200;
-inhibitoryModule = 9;
+M = 100; % Number of excitatory neurons in each module.
+N = 200; % Total number of inhibitory neurons.
+inhibitoryModule = 9; % Index of module with the inhibitory neurons.
 
 module = cell(1, 9); 
 
@@ -16,7 +16,7 @@ for m = 1:8
     module{m}.d = 8-6*r.^2;
     module{m}.D = ones(M).*floor(rand*20); % conduction delay
    
-    % Connectivity matrices
+    % Setup excitatory-excitatory connectivity matrices
     for i = 1:8
         module{m}.S{i} = zeros(M);
         module{m}.factor{i} = 17;
@@ -24,13 +24,15 @@ for m = 1:8
         module{m}.weight{i} = 1;
     end
     
+    % Setup excitatory-inhibitory connectivity matrices
     module{m}.S{inhibitoryModule} = zeros(M, N);
     module{m}.factor{inhibitoryModule} = 50;
     module{m}.delay{inhibitoryModule} = 1;
     module{m}.weight{inhibitoryModule} = rand;
  
+    % Create 1000 random excitatory-excitatory 
+    % connections within each module.
     numberConnections = 0;
-    
     while numberConnections < 1000
        i = floor(rand*99) + 1;
        j = floor(rand*99) + 1;
@@ -41,13 +43,17 @@ for m = 1:8
     end 
 end
 
+%% Setup the module with inhibitory neurons.
 r = rand(M);
 
 module{inhibitoryModule}.a = 0.02*ones(M);
 module{inhibitoryModule}.b = 0.25*ones(M);
 module{inhibitoryModule}.c = -65+15*r.^2;
 module{inhibitoryModule}.d = 2-6*r.^2;
-    
+
+%% Setup excitatory-inhibitory connections.
+% Each inhibitory neuron has connections from 4 excitatory neurons
+% (all from the same module).
 for inhibitoryNeuron = 1:N
   targetModule = floor(rand*7) + 1;
   
