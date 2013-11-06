@@ -1,6 +1,6 @@
-function plotConnectivityMatrix
+function plotConnectivityMatrix(filename)
 
-load('RewiredNetwork.mat', 'module');
+load(filename, 'module');
 
 final = [];
 row = [];
@@ -14,7 +14,6 @@ for i = 1:8
     
     final = [final; row];
 end
-
 
 spy(final);
 end

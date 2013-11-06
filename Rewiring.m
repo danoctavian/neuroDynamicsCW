@@ -29,6 +29,7 @@ for m = 1:8
    end
 end
 
-save('RewiredNetwork.mat', 'module');
+filename = strcat('RewiredNetwork', num2str(probability), '.mat');
+save(filename, 'module');
 
 end
