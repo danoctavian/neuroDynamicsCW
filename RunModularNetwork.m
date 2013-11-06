@@ -3,7 +3,7 @@ function RunModularNetwork(filename)
 load(filename,'module');
 
 Tmax = 20;
-Ib = 10;
+Ib = 100;
 inhibitoryModule = 9;
 v = cell(1, 9);
 firings = [];
@@ -31,13 +31,18 @@ for t = 1:Tmax
     end
     
     % deliver constant base current to module 1
-    module{1}.I = Ib*ones(100, 1);
+    %module{2}.I = Ib*ones(100, 1);
     
-    for i=2:8
+    %module{1}.I = zeros(100,1);
+    
+    for i=1:8
         module{i}.I = zeros(100, 1);
     end
     
-    module{inhibitoryModule}.I = zeros(200, 1);
+    module{randi(8)}.I(randi(100),1) = Ib;
+    
+    module{inhibitoryModule}.I = zeros(200,1);
+    module{inhibitoryModule}.I(randi(200),1) = Ib;
     
     % update all the neurons
     for i = 1:length(module)
@@ -55,17 +60,24 @@ for t = 1:Tmax
     
 end
 
-for i = 1:9
-    module{i}.firings(:, 2) = module{i}.firings(:, 2)+((i-1)*100);
-    firings = [firings; module{i}.firings];
-end
+%for i = 1:9
+%    module{i}.firings(:, 2) = module{i}.firings(:, 2)+((i-1)*100);
+%    firings = [firings; module{i}.firings];
+%end
     
 figure(1)
 clf
 
 
-if ~isempty(firings)
-    plot(firings(:,1),firings(:,2),'.');
+%if ~isempty(firings)
+%    plot(firings(:,1),firings(:,2),'.');
+%end
+
+for i=1:9
+    subplot(9,1,i)
+    if ~isempty(module{i}.firings)
+        plot(module{i}.firings(:,1), module{i}.firings(:,2),'.');
+    end
 end
 
 % xlabel('Time (ms)')

@@ -22,7 +22,7 @@ for m = 1:8
         module{m}.delay{i} = (randi(21,M)-1);
         module{m}.factor{i} = 17;
         module{m}.weight{i} = 1;
-        module{m}.Dmax{i} = 20;
+        module{m}.Dmax{i} = 5;
     end
     
     % Setup excitatory-inhibitory connectivity matrices
