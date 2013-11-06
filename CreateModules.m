@@ -22,6 +22,7 @@ for m = 1:8
         module{m}.delay{i} = ones(M).*(randi(21,1)-1);
         module{m}.factor{i} = 17;
         module{m}.weight{i} = 1;
+        module{m}.Dmax{i} = 20;
     end
     
     % Setup excitatory-inhibitory connectivity matrices
@@ -29,6 +30,7 @@ for m = 1:8
     module{m}.delay{inhibitoryModule} = ones(M,N);
     module{m}.factor{inhibitoryModule} = 50;
     module{m}.weight{inhibitoryModule} = rand;
+    module{m}.Dmax{inhibitoryModule} = 1;
  
     % Create 1000 random excitatory-excitatory 
     % connections within each module.
@@ -66,6 +68,7 @@ for inhibitoryNeuron = 1:N
     
     module{targetModule}.S{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = 1;
     module{targetModule}.weight{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = rand;
+    module{targetModule}.Dmax{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = 1;
   end
   
 end    
@@ -76,6 +79,7 @@ for i = 1:8
     module{inhibitoryModule}.weight{i} = rand - 1;
     module{inhibitoryModule}.delay{i} = ones(N,M);
     module{inhibitoryModule}.factor{i} = 2;
+    module{inhibitoryModule}.Dmax{i} = 1;
 end
 
 %% Inhibitory to inhibitory
@@ -84,6 +88,7 @@ module{inhibitoryModule}.S{inhibitoryModule}(1:201:end) = 0;
 module{inhibitoryModule}.weight{inhibitoryModule} = rand - 1;
 module{inhibitoryModule}.delay{inhibitoryModule} = ones(N);
 module{inhibitoryModule}.factor{inhibitoryModule} = 1;
+module{inhibitoryModule}.Dmax{inhibitoryModule} = 1;
 
 save('Network.mat', 'module');
 

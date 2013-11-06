@@ -4,7 +4,7 @@ load(filename,'module');
 
 Dmax = 10;
 Tmax = 20;
-Ib = 5;
+Ib = 10;
 inhibitoryModule = 9;
 v = cell(1, 9);
 firings = [];
@@ -42,7 +42,7 @@ for t = 1:Tmax
     
     % update all the neurons
     for i = 1:length(module)
-        module = IzNeuronUpdate(module, i, t, Dmax);
+        module = IzNeuronUpdate(module, i, t, module{i}.delay);
     end
     
     for i = 1:8

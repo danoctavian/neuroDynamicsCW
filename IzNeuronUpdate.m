@@ -14,7 +14,7 @@ for j=1:length(layer)
          delay = layer{i}.delay{j};
          F = layer{i}.factor{j};
          % Sum current from incoming spikes
-         k = size(firings,1);
+         k = size(firings,1); % number of neurons that fired
          while (k>0 && firings(k,1)>t-(Dmax+1))
             spikes = (delay(:,firings(k,2))==t-firings(k,1));
             if ~isempty(layer{i}.I(spikes))
