@@ -10,11 +10,11 @@ module = cell(1, 9);
 for m = 1:8
     r = rand(M);
     
+    % Setup parameters for excitatory neurons
     module{m}.a = 0.02*ones(M);
     module{m}.b = 0.2*ones(M);
     module{m}.c = -65+15*r.^2;
     module{m}.d = 8-6*r.^2;
-    module{m}.delay = ones(M).randi(20,0); % conduction delay
    
     % Setup excitatory-excitatory connectivity matrices
     for i = 1:8
