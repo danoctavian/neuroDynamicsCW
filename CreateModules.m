@@ -8,26 +8,26 @@ module = cell(1, 9);
 
 %% Setup 8 modules of excitatory neurons
 for m = 1:8
-    r = rand(M);
+    r = rand(M, 1);
     
     % Setup parameters for excitatory neurons
-    module{m}.a = 0.02*ones(M);
-    module{m}.b = 0.2*ones(M);
+    module{m}.a = 0.02*ones(M, 1);
+    module{m}.b = 0.2*ones(M, 1);
     module{m}.c = -65+15*r.^2;
     module{m}.d = 8-6*r.^2;
    
     % Setup excitatory-excitatory connectivity matrices
     for i = 1:8
         module{m}.S{i} = zeros(M);
-        module{m}.F{i} = 17;
         module{m}.delay{i} = ones(M).*randi(20,0);
+        module{m}.factor{i} = 17;
         module{m}.weight{i} = 1;
     end
     
     % Setup excitatory-inhibitory connectivity matrices
     module{m}.S{inhibitoryModule} = zeros(M, N);
-    module{m}.F{inhibitoryModule} = 50;
     module{m}.delay{inhibitoryModule} = ones(M,N);
+    module{m}.factor{inhibitoryModule} = 50;
     module{m}.weight{inhibitoryModule} = rand;
  
     % Create 1000 random excitatory-excitatory 
@@ -44,10 +44,10 @@ for m = 1:8
 end
 
 %% Setup the module with inhibitory neurons.
-r = rand(M);
+r = rand(N, 1);
 
-module{inhibitoryModule}.a = 0.02*ones(N);
-module{inhibitoryModule}.b = 0.25*ones(N);
+module{inhibitoryModule}.a = 0.02*ones(N, 1);
+module{inhibitoryModule}.b = 0.25*ones(N, 1);
 module{inhibitoryModule}.c = -65+15*r.^2;
 module{inhibitoryModule}.d = 2-6*r.^2;
 
@@ -74,16 +74,16 @@ end
 for i = 1:8
     module{inhibitoryModule}.S{i} = ones(200, 100);
     module{inhibitoryModule}.weight{i} = rand - 1;
-    module{inhibitoryModule}.F{i} = 2;
     module{inhibitoryModule}.delay{i} = ones(N,M);
+    module{inhibitoryModule}.factor{i} = 2;
 end
 
 %% Inhibitory to inhibitory
 module{inhibitoryModule}.S{inhibitoryModule} = ones(200);
 module{inhibitoryModule}.S{inhibitoryModule}(1:201:end) = 0;
 module{inhibitoryModule}.weight{inhibitoryModule} = rand - 1;
-module{inhibitoryModule}.F{inhibitoryModule} = 1;
 module{inhibitoryModule}.delay{inhibitoryModule} = ones(N);
+module{inhibitoryModule}.factor{inhibitoryModule} = 1;
 
 save('Network.mat', 'module');
 
