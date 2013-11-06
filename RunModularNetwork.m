@@ -63,6 +63,7 @@ end
 figure(1)
 clf
 
+
 if ~isempty(firings)
     plot(firings(:,1),firings(:,2),'.');
 end
