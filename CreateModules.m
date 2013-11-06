@@ -46,8 +46,8 @@ end
 %% Setup the module with inhibitory neurons.
 r = rand(M);
 
-module{inhibitoryModule}.a = 0.02*ones(M);
-module{inhibitoryModule}.b = 0.25*ones(M);
+module{inhibitoryModule}.a = 0.02*ones(N);
+module{inhibitoryModule}.b = 0.25*ones(N);
 module{inhibitoryModule}.c = -65+15*r.^2;
 module{inhibitoryModule}.d = 2-6*r.^2;
 
