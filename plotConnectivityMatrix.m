@@ -5,10 +5,10 @@ load(filename, 'module');
 final = [];
 row = [];
 
-for i = 1:8
+for i = 1:9
     row = [];
     
-    for j = 1:8
+    for j = 1:9
         row = [row module{i}.S{j}];
     end
     

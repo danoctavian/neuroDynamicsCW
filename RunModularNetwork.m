@@ -2,7 +2,6 @@ function RunModularNetwork(filename)
 
 load(filename,'module');
 
-Dmax = 10;
 Tmax = 20;
 Ib = 10;
 inhibitoryModule = 9;
@@ -42,7 +41,7 @@ for t = 1:Tmax
     
     % update all the neurons
     for i = 1:length(module)
-        module = IzNeuronUpdate(module, i, t, module{i}.delay);
+        module = IzNeuronUpdate(module, i, t);
     end
     
     for i = 1:8

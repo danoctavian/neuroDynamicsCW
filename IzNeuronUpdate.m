@@ -1,4 +1,4 @@
-function layer = IzNeuronUpdate(layer,i,t,Dmax)
+function layer = IzNeuronUpdate(layer,i,t)
 % Updates membrane potential v and reset rate u for neurons in layer i
 % using Izhikevich's neuron model and the Euler method. Dmax is the maximum
 % conduction delay
@@ -6,6 +6,7 @@ function layer = IzNeuronUpdate(layer,i,t,Dmax)
 dt = 0.2; % Euler method step size
 % Calculate current from incoming spikes
 for j=1:length(layer)
+   Dmax = layer{i}.Dmax{j};
    S = layer{i}.S{j};
    if ~isempty(S)
       firings = layer{j}.firings;
