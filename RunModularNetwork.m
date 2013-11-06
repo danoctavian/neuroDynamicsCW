@@ -3,11 +3,11 @@ function RunModularNetwork(filename)
 load(filename,'module');
 
 Dmax = 10;
-Tmax = 1000;
+Tmax = 20;
 Ib = 5;
 inhibitoryModule = 9;
 v = cell(1, 9);
-firings = cell(1, 9);
+firings = [];
 
 % Initialise modules
 for m = 1:8
@@ -46,8 +46,6 @@ for t = 1:Tmax
     end
     
     for i = 1:8
-        size(v{i})
-        module{i}.v
         v{i}(t, 1:100) = module{i}.v;
         u{i}(t, 1:100) = module{i}.u;
     end
@@ -58,24 +56,19 @@ for t = 1:Tmax
     
 end
 
-for i = 1:8
-    firings{i} = module{i}.firings;
+for i = 1:9
+    module{i}.firings(:, 2) = module{i}.firings(:, 2)*i;
+    firings = [firings; module{i}.firings];
 end
-
-firings{inhibitoryModule} = module{inhibitoryModule}.firings;
     
 figure(1)
 clf
 
-subplot(2,1,1)
-for i = 1:9
-
-    if ~isempty(firings{i})
-       plot(firings{i}(:,1),firings{i}(:,2),'.')
-       hold on
-    end
-  
+if ~isempty(firings)
+    plot(firings(:,1),firings(:,2),'.');
 end
+
+
 
 % xlabel('Time (ms)')
 xlim([0 Tmax])
@@ -83,5 +76,10 @@ ylabel('Neuron number')
 ylim([0 1000])
 set(gca,'YDir','reverse')
 title('I will be amazed if this works!')
+
+
+firings
+size(firings)
+
 
 drawnow    
