@@ -20,7 +20,7 @@ for m = 1:8
     for i = 1:8
         module{m}.S{i} = zeros(M);
         module{m}.factor{i} = 17;
-        module{m}.delay{i} = floor(rand*19) + 1;
+        module{m}.delay{i} = randi(20,0);
         module{m}.weight{i} = 1;
     end
     
@@ -34,8 +34,8 @@ for m = 1:8
     % connections within each module.
     numberConnections = 0;
     while numberConnections < 1000
-       i = floor(rand*99) + 1;
-       j = floor(rand*99) + 1;
+       i = randi(100,1);
+       j = randi(100,1);
        if (i ~= j && module{m}.S{m}(i, j) ~= 1)
            module{m}.S{m}(i,j) = 1;
            numberConnections = numberConnections + 1;
@@ -55,13 +55,13 @@ module{inhibitoryModule}.d = 2-6*r.^2;
 % Each inhibitory neuron has connections from 4 excitatory neurons
 % (all from the same module).
 for inhibitoryNeuron = 1:N
-  targetModule = floor(rand*7) + 1;
+  targetModule = randi(8,1);
   
   for count = 1:4
-    excitatoryNeuron = floor(rand*99) + 1;
+    excitatoryNeuron = randi(100,1);
     
     while (module{targetModule}.S{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) == 1)
-        excitatoryNeuron = floor(rand*99) + 1;
+        excitatoryNeuron = randi(100,1);
     end
     
     module{targetModule}.S{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = 1;

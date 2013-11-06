@@ -15,12 +15,12 @@ for m = 1:8
                
                module{m}.S{m}(i, j) = 0;
                
-               newM = floor(rand*7) + 1;
-               newNeuron = floor(rand*99) + 1;
+               newM = randi(8,1);
+               newNeuron = randi(100,1);
                
                while(module{m}.S{newM}(newNeuron, i) == 1)
-                   newM = floor(rand*7) + 1;
-                   newNeuron = floor(rand*99) + 1;
+                   newM = randi(8,1);
+                   newNeuron = randi(100,1);
                end
                
                module{m}.S{newM}(newNeuron, i) = 1;
