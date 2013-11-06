@@ -19,7 +19,7 @@ for m = 1:8
     % Setup excitatory-excitatory connectivity matrices
     for i = 1:8
         module{m}.S{i} = zeros(M);
-        module{m}.delay{i} = ones(M).*randi(20,0);
+        module{m}.delay{i} = ones(M).*(randi(21,1)-1);
         module{m}.factor{i} = 17;
         module{m}.weight{i} = 1;
     end
