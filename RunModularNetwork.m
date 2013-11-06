@@ -57,7 +57,7 @@ for t = 1:Tmax
 end
 
 for i = 1:9
-    module{i}.firings(:, 2) = module{i}.firings(:, 2)*i;
+    module{i}.firings(:, 2) = module{i}.firings(:, 2)+((i-1)*100);
     firings = [firings; module{i}.firings];
 end
     
@@ -68,8 +68,6 @@ if ~isempty(firings)
     plot(firings(:,1),firings(:,2),'.');
 end
 
-
-
 % xlabel('Time (ms)')
 xlim([0 Tmax])
 ylabel('Neuron number')
@@ -77,9 +75,7 @@ ylim([0 1000])
 set(gca,'YDir','reverse')
 title('I will be amazed if this works!')
 
-
 firings
 size(firings)
-
 
 drawnow    
