@@ -14,19 +14,19 @@ for m = 1:8
     module{m}.b = 0.2*ones(M);
     module{m}.c = -65+15*r.^2;
     module{m}.d = 8-6*r.^2;
-    module{m}.D = ones(M).*floor(rand*20); % conduction delay
+    module{m}.delay = ones(M).randi(20,0); % conduction delay
    
     % Setup excitatory-excitatory connectivity matrices
     for i = 1:8
         module{m}.S{i} = zeros(M);
-        module{m}.factor{i} = 17;
+        module{m}.F{i} = 17;
         module{m}.delay{i} = randi(20,0);
         module{m}.weight{i} = 1;
     end
     
     % Setup excitatory-inhibitory connectivity matrices
     module{m}.S{inhibitoryModule} = zeros(M, N);
-    module{m}.factor{inhibitoryModule} = 50;
+    module{m}.F{inhibitoryModule} = 50;
     module{m}.delay{inhibitoryModule} = 1;
     module{m}.weight{inhibitoryModule} = rand;
  
@@ -74,16 +74,16 @@ end
 for i = 1:8
     module{inhibitoryModule}.S{i} = ones(200, 100);
     module{inhibitoryModule}.weight{i} = rand - 1;
-    module{inhibitoryModule}.scalingFactor{i} = 2;
-    module{inhibitoryModule}.conductionDelay{i} = 1;
+    module{inhibitoryModule}.F{i} = 2;
+    module{inhibitoryModule}.delay{i} = 1;
 end
 
 %% Inhibitory to inhibitory
 module{inhibitoryModule}.S{inhibitoryModule} = ones(200);
 module{inhibitoryModule}.S{inhibitoryModule}(1:201:end) = 0;
 module{inhibitoryModule}.weight{inhibitoryModule} = rand - 1;
-module{inhibitoryModule}.scalingFactor{inhibitoryModule} = 1;
-module{inhibitoryModule}.conductionDelay{inhibitoryModule} = 1;
+module{inhibitoryModule}.F{inhibitoryModule} = 1;
+module{inhibitoryModule}.delay{inhibitoryModule} = 1;
 
 save('Network.mat', 'module');
 
