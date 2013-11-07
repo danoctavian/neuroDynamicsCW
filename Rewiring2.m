@@ -2,7 +2,7 @@ function Rewiring2( probability )
 
 load('Network2.mat', 'layer');
 
-N = 100; % Number of excitatory neurons in each module.
+N = 800; % Total number of excitatory neurons.
 
 % For each existing excitatory-excitatory connection within a module
 % with a given probability create a new intermodular
@@ -29,7 +29,12 @@ end
 filename = strcat('RewiredNetwork2', num2str(probability), '.mat');
 save(filename, 'layer');
 
+figure(1)
 spy(layer{1}.S{1});
+figure(2)
+spy(layer{2}.S{1});
+figure(3)
+spy(layer{1}.S{2});
 
 
 
