@@ -2,7 +2,7 @@ function RunModularNetwork(filename)
 
 load(filename,'module');
 
-Tmax = 400;
+Tmax = 150;
 Ib = 15;
 inhibitoryModule = 9;
 v = cell(1, 9);
@@ -24,32 +24,27 @@ module{inhibitoryModule}.firings = [];
 
 % SIMULATION!!!!!
 
+for i=1:8
+   module{i}.I = zeros(100,1); 
+end
+module{inhibitoryModule}.I = zeros(200,1);
 for t = 1:Tmax
+    t
 
     % display time every 100ms
     if mod(t, 100) == 0
+        module{randi(8)}.I = Ib.*poissrnd(lambda, 100, 1);
         t
     end
     
-    % deliver constant base current to module 1
-    %module{2}.I = Ib*ones(100, 1);
     
-    %module{1}.I = zeros(100,1);
-    
+    %module{1}.I = Ib.*poissrnd(lambda, 100, 1);
     %for i=1:8
-    %    module{i}.I = zeros(100, 1);
+        %module{randi(8)}.I = Ib.*poissrnd(lambda, 100, 1);
     %end
     
-    %module{randi(8)}.I(randi(100),1) = Ib;
-    
     %module{inhibitoryModule}.I = zeros(200,1);
-    %module{inhibitoryModule}.I(randi(200),1) = Ib;
-    
-    for i=1:8
-        module{i}.I = Ib.*poissrnd(lambda, 100, 1);
-    end
-    
-    module{inhibitoryModule}.I = Ib.*poissrnd(lambda, 200, 1);
+    %module{inhibitoryModule}.I = Ib.*poissrnd(lambda, 200, 1);
     
     % update all the neurons
     for i = 1:length(module)
@@ -96,7 +91,7 @@ ylim([0 1000])
 set(gca,'YDir','reverse')
 title('I will be amazed if this works!')
 
-firings
-size(firings)
+%firings
+%size(firings)
 
 drawnow    
