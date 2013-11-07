@@ -23,7 +23,7 @@ layer{2}.firings = [];
 for t = 1:Tmax
     
     %display time every 10 ms
-    if(mod(t, 10) == 0
+    if(mod(t, 10) == 0)
         t
     end
     
