@@ -3,10 +3,11 @@ function layer = IzNeuronUpdate(layer,j,t)
 % using Izhikevich's neuron model and the Euler method. Dmax is the maximum
 % conduction delay
 
+Dmax = 21;
 dt = 0.2; % Euler method step size
 % Calculate current from incoming spikes
 for i=1:length(layer)
-   Dmax = layer{i}.Dmax{j}; 
+   %Dmax = layer{i}.Dmax{j}; 
    S = layer{i}.S{j};
    if ~isempty(S)
       firings = layer{j}.firings;
@@ -14,12 +15,13 @@ for i=1:length(layer)
          % Find incoming spikes (taking account of propagation delays)
          delay = layer{i}.delay{j};
          F = layer{i}.factor{j};
+         W = layer{i}.weight{j};
          % Sum current from incoming spikes
          k = size(firings,1); % number of neurons that fired
          while (k>0 && firings(k,1)>t-(Dmax+1)) % firings(k,1) is the time when the last firing took place
             spikes = (delay(:,firings(k,2))==t-firings(k,1)); % firings(k,2) is the index of the neuron that fired last
             if ~isempty(layer{i}.I(spikes))
-               layer{i}.I(spikes) = layer{i}.I(spikes)+S(spikes,firings(k,2))*F;
+               layer{i}.I(spikes) = layer{i}.I(spikes)+S(spikes,firings(k,2))*F*W;
             end
             k = k-1;
          end;

@@ -67,7 +67,6 @@ for inhibitoryNeuron = 1:N
     end
     
     module{targetModule}.S{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = 1;
-    module{targetModule}.weight{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = rand;
   end
   
 end    
