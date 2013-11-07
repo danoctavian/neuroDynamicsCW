@@ -66,14 +66,14 @@ for inhibitoryNeuron = 1:N
         excitatoryNeuron = randi(100,1);
     end
     
-    module{targetModule}.S{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = 1;
+    module{targetModule}.S{inhibitoryModule}(excitatoryNeuron, inhibitoryNeuron) = rand;
   end
   
 end    
 
 %% Inhibitory to excitatory
 for i = 1:8
-    module{inhibitoryModule}.S{i} = ones(200, 100);
+    module{inhibitoryModule}.S{i} = -rand(200, 100);
     module{inhibitoryModule}.weight{i} = rand - 1;
     module{inhibitoryModule}.delay{i} = ones(N,M);
     module{inhibitoryModule}.factor{i} = 2;
@@ -81,7 +81,7 @@ for i = 1:8
 end
 
 %% Inhibitory to inhibitory
-module{inhibitoryModule}.S{inhibitoryModule} = ones(200);
+module{inhibitoryModule}.S{inhibitoryModule} = -rand(200);
 module{inhibitoryModule}.S{inhibitoryModule}(1:201:end) = 0;
 module{inhibitoryModule}.weight{inhibitoryModule} = rand - 1;
 module{inhibitoryModule}.delay{inhibitoryModule} = ones(N);
