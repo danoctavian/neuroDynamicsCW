@@ -41,12 +41,12 @@ for t = 1:Tmax
 end
 
 firings = layer{1}.firings;
-average = cell(8, 1);
+average = [];
 
 for i = 1:50
    indices = find((i-1)*20 < firings(:, 1) & firings(:, 1) <= 50+(i-1)*20);
    for module = 1:8
-        average{module} = [average{module} size(find((module-1)*100 < firings(indices, 2) & firings(indices, 2) <= module*100), 1) / 50];
+        average(module, i) = size(find((module-1)*100 < firings(indices, 2) & firings(indices, 2) <= module*100), 1) / 50;
    end 
 end
 
