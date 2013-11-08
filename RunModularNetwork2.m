@@ -1,4 +1,4 @@
-function RunModularNetwork2(filename)
+function average = RunModularNetwork2(filename)
 
 load(filename,'layer');
 
@@ -38,19 +38,32 @@ for t = 1:Tmax
         layer = IzNeuronUpdate(layer, i, t, Dmax);
     end
 end
-    
+
+firings = layer{1}.firings;
+average = cell(8, 1);
+
+for i = 1:50
+   indices = find((i-1)*20 < firings(:, 1) & firings(:, 1) <= 50+(i-1)*20);
+   for module = 1:8
+        average{module} = [average{module} size(find((module-1)*100 < firings(indices, 2) & firings(indices, 2) <= module*100), 1) / 50];
+   end 
+end
+
 figure(1)
 clf
 
+subplot(2, 1, 2)
+plot(1:20:1000, average{1}, 1:20:1000, average{2}, 1:20:1000, average{3}, 1:20:1000, average{4}, 1:20:1000, average{5}, 1:20:1000, average{6}, 1:20:1000, average{7}, 1:20:1000, average{8});
+
+subplot(2, 1, 1)
 plot(layer{1}.firings(:, 1), layer{1}.firings(:, 2), '.')
 xlim([0 Tmax])
 ylabel('Neuron number')
 set(gca,'YDir','reverse')
 title('I will be amazed if this works!')
     
-
 drawnow
 
-save('filter.mat', 'layer');
+
 
 
