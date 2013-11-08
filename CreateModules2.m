@@ -1,4 +1,4 @@
-function CreateModules2
+function layer = CreateModules2
 
 EXCITATORY = 100; % Number of excitatory neurons in each module.
 INHIBITORY = 200; % Total number of inhibitory neurons.
@@ -81,5 +81,5 @@ for inhibitoryNeuron = 1:INHIBITORY
 end
 
     
- save('Network2.mat', 'layer');
+ save('debug_Network2.mat', 'layer');
     

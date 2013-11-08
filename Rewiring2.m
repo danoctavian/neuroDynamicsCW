@@ -1,4 +1,4 @@
-function Rewiring2( probability )
+function layer = Rewiring2( probability )
 
 load('Network2.mat', 'layer');
 
