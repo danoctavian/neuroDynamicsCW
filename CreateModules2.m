@@ -32,7 +32,7 @@ layer{2}.factor{1} = 50;    % excitatory-inhibitory
 layer{2}.factor{2} = 1;     % inhibitory-inhibitory
 
 %% Initialising delay
-layer{1}.delay{1} = randi(21, EXCITATORY*MODULES)-1;                % excitatory-excitatory
+layer{1}.delay{1} = randi(21, EXCITATORY*MODULES)-1;        % excitatory-excitatory
 layer{1}.delay{2} = ones(EXCITATORY*MODULES, INHIBITORY);   % inhibitory-excitatory
 layer{2}.delay{1} = ones(INHIBITORY, EXCITATORY*MODULES);   % excitatory-inhibitory
 layer{2}.delay{2} = ones(INHIBITORY);                       % inhibitory-inhibitory

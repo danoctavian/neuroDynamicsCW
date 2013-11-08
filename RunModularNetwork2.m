@@ -1,6 +1,6 @@
-function RunModularNetwork2(layer)
+function RunModularNetwork2(filename)
 
-%load(filename,'layer');
+load(filename,'layer');
 
 Tmax = 1000;
 Ib = 15;
@@ -10,7 +10,7 @@ M = 100;
 N = 200;
 
 % Initialise modules
-layer{1}.v = -65*ones(M*8, 1);
+layer{1}.v = -65.*ones(M*8, 1);
 layer{1}.u = layer{1}.b.*layer{1}.v;
 layer{1}.firings = [];
 
