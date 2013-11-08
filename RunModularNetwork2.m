@@ -5,7 +5,7 @@ load(filename,'layer');
 Tmax = 1000;
 Ib = 15;
 lambda = 0.01;
-Dmax = 21;
+Dmax = 20;
 M = 100;
 N = 200;
 

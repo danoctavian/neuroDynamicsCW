@@ -2,24 +2,31 @@ function Rewiring2( probability )
 
 load('Network2.mat', 'layer');
 
-N = 800; % Total number of excitatory neurons.
+TOTAL_EXCITATORY = 800; % Total number of excitatory neurons.
 
 % For each existing excitatory-excitatory connection within a module
 % with a given probability create a new intermodular
 % excitatory-excitatory connection.
-for i = 1:N
-    for j = 1:N
-        if(layer{1}.S{1}(i, j) == 1 && rand < probability)
+INITIAL_CONNECTIVITY = layer{1}.S{1};
+
+for i = 1:TOTAL_EXCITATORY
+    for j = 1:TOTAL_EXCITATORY
+        if(INITIAL_CONNECTIVITY(i, j) == 1 && rand < probability)
 
            layer{1}.S{1}(i, j) = 0;
 
            newM = randi(8,1);
+           % Exclude the current module.
+           while(newM == (floor(i/100)+1))
+               newM = randi(8,1);
+           end
+           
            newNeuron = randi(100,1)+(newM-1)*100;
 
-           while(layer{1}.S{1}(newNeuron, i) == 1)
-               newM = randi(8,1);
-               newNeuron = randi(100,1)+(newM-1)*100;
-           end
+           %while(layer{1}.S{1}(newNeuron, i) == 1)
+           %    newM = randi(8,1);
+           %    newNeuron = randi(100,1)+(newM-1)*100;
+           %end
 
            layer{1}.S{1}(newNeuron, i) = 1;
         end

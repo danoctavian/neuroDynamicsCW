@@ -12,18 +12,18 @@ layer{1}.a = 0.02*ones(EXCITATORY*MODULES, 1);
 layer{1}.b = 0.2*ones(EXCITATORY*MODULES, 1);
 layer{1}.c = -65+15*r.^2;
 layer{1}.d = 8-6*r.^2;
-layer{1}.rows = EXCITATORY*MODULES;
-layer{1}.columns = 1;
 
 %% Layer with inhibitory neurons
 r = rand(INHIBITORY, 1);
 
-layer{2}.a = 0.02*ones(INHIBITORY, 1);
-layer{2}.b = 0.25*ones(INHIBITORY, 1);
-layer{2}.c = -65+15*r.^2;
-layer{2}.d = 2-r.^2;
-layer{2}.rows = INHIBITORY;
-layer{2}.columns = 1;
+%layer{2}.a = 0.02*ones(INHIBITORY, 1);
+%layer{2}.b = 0.25*ones(INHIBITORY, 1);
+%layer{2}.c = -65+15*r.^2;
+%layer{2}.d = 2-r.^2;
+layer{2}.a = 0.02+0.08.*r;
+layer{2}.b = 0.25-0.05.*r;
+layer{2}.c = -65*ones(INHIBITORY, 1);
+layer{2}.d = 2*ones(INHIBITORY, 1);
     
 %% Initialising factors
 layer{1}.factor{1} = 17;    % excitatory-excitatory
@@ -70,6 +70,8 @@ for inhibitoryNeuron = 1:INHIBITORY
     for count = 1:4
         excitatoryNeuron = randi(100,1)+((targetModule-1)*100);
         
+        % Check if a chosen connection already existed, if not then create
+        % a new connection.
         while (layer{2}.S{1}(inhibitoryNeuron, excitatoryNeuron) ~= 0)
             excitatoryNeuron = randi(100,1)+((targetModule-1)*100);
         end
