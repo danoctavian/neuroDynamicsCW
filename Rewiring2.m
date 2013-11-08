@@ -23,7 +23,7 @@ for i = 1:TOTAL_EXCITATORY
            
            newNeuron = randi(100,1)+(newM-1)*100;
 
-           layer{1}.S{1}(newNeuron, i) = 1;
+           layer{1}.S{1}(i, newNeuron) = 1;
         end
     end
 end
