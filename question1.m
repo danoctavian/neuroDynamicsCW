@@ -1,12 +1,14 @@
-function question1(prob)
+function Question1(probability)
 
-layers = CreateModules2;
-rewired_layers = Rewiring2(prob, layers);
+Tmax = 1000;
 
-[rewired_layers, average] = RunModularNetwork2(rewired_layers);
+layers = CreateModules;
+rewired_layer = Rewiring(probability, layers);
+
+[rewired_layer, average] = RunModularNetwork(rewired_layer, Tmax);
 
 %Print the plots
-%ModularNetwork2Plot(rewired_layers, average);
+PlotQ1(rewired_layer, average);
 
-s = aks_diff(aks_diff(average));
-Complexity ( s' )
+% s = aks_diff(aks_diff(average));
+% Complexity ( s' )

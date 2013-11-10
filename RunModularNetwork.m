@@ -1,4 +1,4 @@
-function [excitatory_firings, inhibitory_firings, average] = RunModularNetwork(layer, TMax)
+function [layer, average] = RunModularNetwork(layer, TMax)
 
 % Constants
 Ib = 15;
@@ -39,7 +39,6 @@ for t = 1:TMax
 end
 
 excitatory_firings = layer{1}.firings;
-inhibitory_firings = layer{2}.firings;
 
 %% Compute average mean firing rates for exitatory neurons
 numberOfRuns = Tmax / TIMESHIFT;

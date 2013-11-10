@@ -1,4 +1,4 @@
-function ModularNetwork2Plot( layer, average )
+function PlotQ1( layer, average )
 
 figure(1)
 spy(layer{1}.S{1});

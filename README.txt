@@ -1,4 +1,5 @@
-hello
+In order to run get the plots for question 1
+You can run Question1 with a given probability
 
-amazing matlab line
-sum(length(find(module{9}.excitatory2Inhibitory(:, :, 1:8))))
+In order to obtain the data for question 2
+You can run Question2 
