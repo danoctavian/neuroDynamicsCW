@@ -75,6 +75,4 @@ for inhibitoryNeuron = 1:INHIBITORY
         layer{2}.S{1}(inhibitoryNeuron, excitatoryNeuron) = rand;
     end
 end
-   
- save('Network.mat', 'layer');
     

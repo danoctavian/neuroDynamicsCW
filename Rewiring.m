@@ -1,7 +1,4 @@
-function layer = Rewiring2( probability, layer )
-
-% The layer is now loaded by the parameter
-%load('Network2.mat', 'layer');
+function layer = Rewiring(probability, layer)
 
 TOTAL_EXCITATORY = 800; % Total number of excitatory neurons.
 
@@ -31,10 +28,6 @@ for i = 1:TOTAL_EXCITATORY
         end
     end
 end
-
-filename = strcat('debug_RewiredNetwork2', num2str(probability), '.mat');
-save(filename, 'layer');
-
 
 figure(1)
 spy(layer{1}.S{1});
