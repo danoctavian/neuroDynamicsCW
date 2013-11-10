@@ -28,3 +28,8 @@ for i=1:NUMBERTRIES
 
 end
 
+plot(probs, complexities, '.')
+xlim([0 0.5])
+xlabel('Rewiring probability p')
+ylabel('Neural Complexity')
+

@@ -29,7 +29,4 @@ for i = 1:TOTAL_EXCITATORY
     end
 end
 
-figure(1)
-spy(layer{1}.S{1});
-
 
