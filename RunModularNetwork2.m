@@ -1,9 +1,8 @@
-function [layer,average] = RunModularNetwork2(layer)
+function [layer,average] = RunModularNetwork2(layer, TMax)
 
 % Now we load the layer from parameter.
 %load(filename,'layer');
 
-Tmax = 1000;
 Ib = 15;
 lambda = 0.01;
 Dmax = 20;
@@ -24,7 +23,7 @@ layer{2}.firings = [];
 layer{1}.I = zeros(M*8, 1);
 layer{2}.I = zeros(N, 1);
 
-for t = 1:Tmax
+for t = 1:TMax
     
     %display time every 10 ms
     if(mod(t, 100) == 0)
@@ -43,7 +42,7 @@ end
 firings = layer{1}.firings;
 average = [];
 
-for i = 1:50
+for i = 1:(TMax / 20)
    indices = find((i-1)*20 < firings(:, 1) & firings(:, 1) <= 50+(i-1)*20);
    for module = 1:8
         average(module, i) = size(find((module-1)*100 < firings(indices, 2) & firings(indices, 2) <= module*100), 1) / 50;

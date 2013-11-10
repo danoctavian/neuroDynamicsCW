@@ -84,7 +84,7 @@ end
 %for i=1:9
 %    subplot(9,1,i)
 %    if ~isempty(module{i}.firings)
-%        plot(module{i}.firings(:,1), module{i}.firings(:,2),'.');
+%        plot(module{i}.firings(:,1), module{i}.firing1s(:1,2),'.');
 %    end
 %end
 
