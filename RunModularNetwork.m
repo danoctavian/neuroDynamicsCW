@@ -41,7 +41,7 @@ end
 excitatory_firings = layer{1}.firings;
 
 %% Compute average mean firing rates for exitatory neurons
-numberOfRuns = Tmax / TIMESHIFT;
+numberOfRuns = TMax / TIMESHIFT;
 average = zeros(MODULES, numberOfRuns);
 
 for i = 1:numberOfRuns

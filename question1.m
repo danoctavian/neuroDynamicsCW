@@ -1,11 +1,11 @@
 function Question1(probability)
 
-Tmax = 1000;
+TMax = 1000;
 
 layers = CreateModules;
 rewired_layer = Rewiring(probability, layers);
 
-[rewired_layer, average] = RunModularNetwork(rewired_layer, Tmax);
+[rewired_layer, average] = RunModularNetwork(rewired_layer, TMax);
 
 %Print the plots
 PlotQ1(rewired_layer, average);
