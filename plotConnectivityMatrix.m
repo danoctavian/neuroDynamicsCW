@@ -1,3 +1,0 @@
-function plotConnectivityMatrix(layer)
-
-end
