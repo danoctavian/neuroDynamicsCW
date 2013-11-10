@@ -2,7 +2,7 @@ function RunModularNetwork(filename)
 
 load(filename,'module');
 
-Tmax = 150;
+Tmax = 200;
 Ib = 15;
 inhibitoryModule = 9;
 v = cell(1, 9);
@@ -36,8 +36,7 @@ for t = 1:Tmax
         module{randi(8)}.I = Ib.*poissrnd(lambda, 100, 1);
         t
     end
-    
-    
+        
     %module{1}.I = Ib.*poissrnd(lambda, 100, 1);
     %for i=1:8
         %module{randi(8)}.I = Ib.*poissrnd(lambda, 100, 1);
@@ -45,6 +44,11 @@ for t = 1:Tmax
     
     %module{inhibitoryModule}.I = zeros(200,1);
     %module{inhibitoryModule}.I = Ib.*poissrnd(lambda, 200, 1);
+    % deliver current to all layers
+    for i=1:8
+        module{i}.I = Ib.*poissrnd(lambda, 100, 1);
+    end 
+    module{inhibitoryModule}.I = Ib.*poissrnd(lambda, 200, 1);
     
     % update all the neurons
     for i = 1:length(module)
