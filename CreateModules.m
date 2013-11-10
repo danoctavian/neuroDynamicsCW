@@ -1,4 +1,4 @@
-function layer = CreateModules2
+function layer = CreateModules
 
 EXCITATORY_PER_MODULE = 100;    % Number of excitatory neurons per module.
 EXCITATORY = 800;               % Total number of excitatory neurons.
@@ -75,7 +75,6 @@ for inhibitoryNeuron = 1:INHIBITORY
         layer{2}.S{1}(inhibitoryNeuron, excitatoryNeuron) = rand;
     end
 end
-
-    
- save('debug_Network2.mat', 'layer');
+   
+ save('Network.mat', 'layer');
     
