@@ -9,13 +9,14 @@ function PlotQ1( layer, average )
 
 % connectivity matrix
 figure(1)
-spy(layer{1}.S{1});
-figure(2)
-spy(layer{2}.S{1});
-figure(3)
-spy(layer{1}.S{2});
+clf
 
-figure(4)
+matrix1 = [layer{1}.S{1} layer{1}.S{2}];
+matrix2 = [layer{2}.S{1} layer{2}.S{2}];
+matrix = [matrix1; matrix2];
+spy(matrix);
+
+figure(2)
 clf
 
 % average mean firing rates for each module

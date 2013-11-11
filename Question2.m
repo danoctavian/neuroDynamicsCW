@@ -3,13 +3,14 @@
 % PURPOSE:  run 20 simulation for 60 seconds, compute neural complexities
 %           and generate plot of probabilties and complexities
 %
+% INPUT:    n:              number of tries
 % OUTPUT:   probs:          array of probabilities 1 x 20
 %           complexitties:  array of calculates neural complexities 1 x 20
 %-----------------------------------------------------------------------
-function [probs, complexities] = Question2
+function [probs, complexities] = Question2(n)
 
-NUMBERTRIES = 20;
-a = 0;
+NUMBERTRIES = n;
+a = 0.1;
 b = 0.5;
 time = 60*1000; % simulation time: 60 seconds
 
