@@ -1,3 +1,12 @@
+%-----------------------------------------------------------------------
+% FUNCTION: Rewiring.m
+% PURPOSE:  rewire a network of neurons for a given probability
+% 
+% INPUTS:   layer:          2 layered network of neurons
+%           probability:    rewiring probability
+%               
+% OUTPUT:   layer:     rewired network, ready to be run
+%-----------------------------------------------------------------------
 function layer = Rewiring(probability, layer)
 
 TOTAL_EXCITATORY = 800; % Total number of excitatory neurons.

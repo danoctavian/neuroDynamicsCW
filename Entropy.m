@@ -1,3 +1,11 @@
+%-----------------------------------------------------------------------
+% FUNCTION: Entropy.m
+% PURPOSE:  calculate the entropy of a system
+% 
+% INPUTS:   S:           nobs x nvar data matrix
+%               
+% OUTPUT:   entropy:     entropy of system
+%-----------------------------------------------------------------------
 function entropy = Entropy(S)
 
 n = size(S, 2);

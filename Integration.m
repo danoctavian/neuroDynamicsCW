@@ -1,3 +1,11 @@
+%-----------------------------------------------------------------------
+% FUNCTION: Integration.m
+% PURPOSE:  calculate integration of system s
+% 
+% INPUTS:   S:               nobs x nvar data matrix
+%               
+% OUTPUT:   integration:     integration of system   
+%-----------------------------------------------------------------------
 function integration = Integration(S)
 
 integration = 0;

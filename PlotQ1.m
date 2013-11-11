@@ -1,5 +1,13 @@
+%-----------------------------------------------------------------------
+% FUNCTION: Plot1.m
+% PURPOSE:  plots the data for question 1
+% 
+% INPUTS:   layer:      2 layer neural network
+%           average:    average mean firing rates for each module 8 x 50
+%-----------------------------------------------------------------------
 function PlotQ1( layer, average )
 
+% connectivity matrix
 figure(1)
 spy(layer{1}.S{1});
 figure(2)
@@ -10,12 +18,14 @@ spy(layer{1}.S{2});
 figure(4)
 clf
 
+% average mean firing rates for each module
 subplot(2, 1, 2)
 plot(1:20:1000, average(1, :), 1:20:1000, average(2, :), 1:20:1000, average(3,:), 1:20:1000, average(4,:), 1:20:1000, average(5,:), 1:20:1000, average(6,:), 1:20:1000, average(7, :), 1:20:1000, average(8,:));
 xlim([0 1000])
 ylabel('Mean Firing Rate')
 xlabel('Time (ms) + 0s')
 
+% raster plot of firings for excitatory neurons
 subplot(2, 1, 1)
 plot(layer{1}.firings(:, 1), layer{1}.firings(:, 2), '.')
 xlim([0 1000])

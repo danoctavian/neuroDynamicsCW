@@ -1,3 +1,13 @@
+%-----------------------------------------------------------------------
+% FUNCTION: RunModularNetwork.m
+% PURPOSE:  simulate a given neural network for a given number of seconds
+% 
+% INPUTS:   layer:      2 layer neural network
+%           TMax:       simulation time
+%               
+% OUTPUT:   layer:     the neural network for plotting
+%           average:   mean firing rates for each module 8 * (TMax/20)
+%-----------------------------------------------------------------------
 function [layer, average] = RunModularNetwork(layer, TMax)
 
 % Constants

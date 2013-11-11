@@ -1,3 +1,11 @@
+%-----------------------------------------------------------------------
+% FUNCTION: Question2.m
+% PURPOSE:  run 20 simulation for 60 seconds, compute neural complexities
+%           and generate plot of probabilties and complexities
+%
+% OUTPUT:   probs:          array of probabilities 1 x 20
+%           complexitties:  array of calculates neural complexities 1 x 20
+%-----------------------------------------------------------------------
 function [probs, complexities] = Question2
 
 NUMBERTRIES = 20;
@@ -28,8 +36,11 @@ for i=1:NUMBERTRIES
 
 end
 
+% plot the complexities for each rewiring probability
+figure(1)
+clf 
+
 plot(probs, complexities, '.')
 xlim([0 0.5])
 xlabel('Rewiring probability p')
 ylabel('Neural Complexity')
-

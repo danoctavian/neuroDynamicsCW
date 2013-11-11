@@ -1,3 +1,11 @@
+%-----------------------------------------------------------------------
+% FUNCTION: Complexity.m
+% PURPOSE:  calculate neural complexity
+% 
+% INPUTS:   S:              nobs x nvar data matrix
+%               
+% OUTPUT:   complexity:     neural complexity for given input   
+%-----------------------------------------------------------------------
 function complexity = Complexity(S)
 
 complexity = 0;

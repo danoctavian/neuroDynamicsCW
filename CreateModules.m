@@ -1,3 +1,10 @@
+%-----------------------------------------------------------------------
+% FUNCTION: CreateModules.m
+% PURPOSE:  creates a modular neural network with 8 separate modules
+%           and 1 inhibitory module
+%
+% OUTPUT:   layer:     network of two layers (excitatory and inhibitory)
+%-----------------------------------------------------------------------
 function layer = CreateModules
 
 EXCITATORY_PER_MODULE = 100;    % Number of excitatory neurons per module.
